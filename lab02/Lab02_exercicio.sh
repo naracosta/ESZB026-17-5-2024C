@@ -6,6 +6,11 @@ LED_GPIO_G=21
 echo $LED_GPIO_Y >> "/sys/class/gpio/export"
 echo $LED_GPIO_R >> "/sys/class/gpio/export"
 echo $LED_GPIO_G >> "/sys/class/gpio/export"
+sleep 0.1
+echo "out" >> "/sys/class/gpio/gpio$LED_GPIO_Y/direction"
+echo "out" >> "/sys/class/gpio/gpio$LED_GPIO_R/direction"
+echo "out" >> "/sys/class/gpio/gpio$LED_GPIO_G/direction"
+sleep 0.1
 
 i=0
 while [ $i -lt 5 ]; do
