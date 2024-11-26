@@ -13,22 +13,41 @@
 #define GPIO_SYSFS "/sys/class/gpio/"
 
 void writeGPIO(char filename[], char value[]){
+   printf("a\n");
+
    FILE* fp;                           // cria um ponteiro fp
+   printf("b\n");
+   printf(filename);
    fp = fopen(filename, "w+");         // abre o arquivo para escrita
+
+   printf("\nc\n");
    fprintf(fp, "%s", value);           // grava o valor no arquivo
+   printf("d\n");
+
    fclose(fp);                         // fecha o arquivo
 }
 
 int main(int argc, char* argv[]){
-  
-  writeGPIO(GPIO_SYSFS "export", GPIO_NUMBER_Y);
+
+
+
+  printf("oi1\n");  
+  writeGPIO("/sys/class/gpio/export", GPIO_NUMBER_Y);
+  printf("oi1b\n");
   writeGPIO(GPIO_SYSFS "export", GPIO_NUMBER_R);
   writeGPIO(GPIO_SYSFS "export", GPIO_NUMBER_G);
 
+
+
+
+
+
+  printf("oi2\n");
   writeGPIO(GPIO4_PATH_Y "direction", "out");
   writeGPIO(GPIO4_PATH_R "direction", "out");
   writeGPIO(GPIO4_PATH_G "direction", "out");
 
+  printf("oi3\n");
   int i=0;
   while (i < 5){
     writeGPIO(GPIO4_PATH_R "value", "1");
